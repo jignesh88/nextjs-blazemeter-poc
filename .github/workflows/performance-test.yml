@@ -41,11 +41,8 @@ jobs:
       # Set the Vercel URL from the deployment event or secrets
       - name: Set Vercel URL
         run: |
-          if [ "${{ github.event_name }}" = "deployment_status" ]; then
-            echo "VERCEL_URL=${{ github.event.deployment_status.target_url }}" >> $GITHUB_ENV
-          else
-            echo "VERCEL_URL=${{ secrets.VERCEL_URL }}" >> $GITHUB_ENV
-          fi
+          
+          echo "VERCEL_URL=${{ secrets.VERCEL_URL }}" >> $GITHUB_ENV
           echo "Using Vercel URL: ${{ env.VERCEL_URL }}"
 
       # Run different test types based on workflow dispatch input
