@@ -42,21 +42,21 @@ jobs:
       - name: Set Vercel URL
         run: |
           env
-          echo "Using Vercel URL: ${{ env.VERCEL_URL }}"
+          echo "Using Vercel URL: ${{ vars.VERCEL_URL }}"
 
       # Run different test types based on workflow dispatch input
       - name: Run Full Test Suite (Default)
         if: github.event.inputs.test_type == 'full' || github.event.inputs.test_type == '' || github.event_name == 'deployment_status' || github.event_name == 'push'
         env:
-          BZ_TOKEN: ${{ secrets.BZ_TOKEN }}
-          BASE_URL: ${{ env.VERCEL_URL }}
+          BZ_TOKEN: ${{ vars.BZ_TOKEN }}
+          BASE_URL: ${{ vars.VERCEL_URL }}
         run: |
           bzt performance-tests/config/master-config.yml -o settings.env.BASE_URL=$BASE_URL -report
 
       - name: Run Login Test Only
         if: github.event.inputs.test_type == 'login'
         env:
-          BZ_TOKEN: ${{ secrets.BZ_TOKEN }}
+          BZ_TOKEN: ${{ vars.BZ_TOKEN }}
           BASE_URL: ${{ env.VERCEL_URL }}
         run: |
           bzt performance-tests/config/login-test.yml -o settings.env.BASE_URL=$BASE_URL -report
