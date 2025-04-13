@@ -1,0 +1,36 @@
+included-configs:
+  - login-test.yml
+  - product-browse-test.yml
+  - checkout-test.yml
+
+settings:
+  env:
+    BASE_URL: ${BASE_URL}  # Will be passed from GitHub Actions
+  aggregator: consolidator
+  check-interval: 5s
+  default-executor: jmeter
+
+reporting:
+  - module: final-stats
+  - module: console
+  - module: blazemeter
+    project: NextJS App Testing
+    test: Full E-commerce Flow
+    report-name: E-Commerce User Flows
+
+services:
+  - module: monitoring
+    local:
+      - metrics:
+          - cpu
+          - memory
+          - network
+  - module: shellexec
+    prepare:
+      - "echo 'Preparing performance testing environment'"
+    startup:
+      - "echo 'Starting tests at: $(date)'"
+    post-process:
+      - "echo 'Tests completed at: $(date)'"
+      - "mkdir -p artifacts/reports"
+      - "cp *.jtl artifacts/reports/"
