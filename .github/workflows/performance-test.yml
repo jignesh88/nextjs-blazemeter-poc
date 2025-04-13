@@ -48,13 +48,6 @@ jobs:
           fi
           echo "Using Vercel URL: ${{ env.VERCEL_URL }}"
 
-      # Generate JMX files
-      - name: Generate JMX Files
-        run: |
-          cd performance-tests/scripts
-          chmod +x generate-jmx.sh
-          ./generate-jmx.sh ${{ env.VERCEL_URL }}
-
       # Run different test types based on workflow dispatch input
       - name: Run Full Test Suite (Default)
         if: github.event.inputs.test_type == 'full' || github.event.inputs.test_type == '' || github.event_name == 'deployment_status' || github.event_name == 'push'
