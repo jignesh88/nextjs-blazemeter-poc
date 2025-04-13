@@ -42,7 +42,6 @@ jobs:
       - name: Set Vercel URL
         run: |
           
-          echo "VERCEL_URL=${{ secrets.VERCEL_URL }}" >> $GITHUB_ENV
           echo "Using Vercel URL: ${{ env.VERCEL_URL }}"
 
       # Run different test types based on workflow dispatch input
