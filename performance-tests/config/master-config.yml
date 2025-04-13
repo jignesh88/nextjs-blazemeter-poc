@@ -10,6 +10,12 @@ settings:
   check-interval: 5s
   default-executor: jmeter
 
+# modules:
+#   blazemeter:
+#     token: "7689408498ca26ff6301d0eb:c9219c32296d8e17dbfe9cbd06eddf56ff763d6ef08033581fe431f25f9bba6f89e82c0b"
+#     test: "Google Test"  # Add a test name
+#     project: "My Project"  # Add a project name
+
 reporting:
   - module: final-stats
   - module: console
@@ -17,6 +23,8 @@ reporting:
     project: NextJS App Testing
     test: Full E-commerce Flow
     report-name: E-Commerce User Flows
+    auth:
+      token: "7689408498ca26ff6301d0eb:c9219c32296d8e17dbfe9cbd06eddf56ff763d6ef08033581fe431f25f9bba6f89e82c0b"        # Set in environment variables
 
 services:
   - module: monitoring

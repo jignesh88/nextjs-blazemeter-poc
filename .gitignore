@@ -38,4 +38,6 @@ performance-tests/.logs/
 performance-tests/*.log
 
 
-# jmeter logs
+/env
+
+/2025*

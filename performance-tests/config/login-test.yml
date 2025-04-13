@@ -3,6 +3,7 @@ execution:
     ramp-up: 30s
     hold-for: 2m
     scenario: login-flow
+    executor: "jmeter"
 
 scenarios:
   login-flow:
@@ -12,9 +13,17 @@ scenarios:
       USERNAME: test@example.com
       PASSWORD: testpassword
 
-services:
-  - module: passfail
-    criteria:
-      - avg-rt>1000ms for 10s, stop as failed
-      - avg-rt>800ms for 5s, continue as failed
-      - p90>2s for 10s, stop as failed
+reporting:
+  - module: "blazemeter"
+  
+modules:
+  blazemeter:
+    token: "7689408498ca26ff6301d0eb:c9219c32296d8e17dbfe9cbd06eddf56ff763d6ef08033581fe431f25f9bba6f89e82c0b"
+    test: "Login test"  # Add a test name
+    project: "Login test"  # Add a project name
+# services:
+#   - module: passfail
+#     criteria:
+#       - avg-rt>1000ms for 10s, stop as failed
+#       - avg-rt>800ms for 5s, continue as failed
+#       - p90>2s for 10s, stop as failed

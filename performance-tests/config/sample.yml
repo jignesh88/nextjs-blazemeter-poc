@@ -1,0 +1,22 @@
+execution:
+  - executor: "jmeter"
+    scenario: "google_test"
+    iterations: 10
+    concurrency: 5
+
+scenarios:
+  google_test:
+    requests:
+      - url: "https://www.google.com"
+        method: "GET"
+
+reporting:
+  - module: "blazemeter"
+  - module: "console"
+  - module: "final-stats"
+
+modules:
+  blazemeter:
+    token: "7689408498ca26ff6301d0eb:c9219c32296d8e17dbfe9cbd06eddf56ff763d6ef08033581fe431f25f9bba6f89e82c0b"
+    test: "Google Test"  # Add a test name
+    project: "My Project"  # Add a project name
