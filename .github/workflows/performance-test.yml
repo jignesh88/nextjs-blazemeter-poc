@@ -1,6 +1,9 @@
 name: Performance Testing
 
 on:
+  push:
+    branches:
+      - main
   deployment_status:
     environments:
       - production
@@ -20,7 +23,7 @@ on:
 jobs:
   performance-test:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || github.event.deployment_status.state == 'success'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.deployment_status.state == 'success'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -55,7 +58,7 @@ jobs:
 
       # Run different test types based on workflow dispatch input
       - name: Run Full Test Suite (Default)
-        if: github.event.inputs.test_type == 'full' || github.event.inputs.test_type == '' || github.event_name == 'deployment_status'
+        if: github.event.inputs.test_type == 'full' || github.event.inputs.test_type == '' || github.event_name == 'deployment_status' || github.event_name == 'push'
         env:
           BZ_TOKEN: ${{ secrets.BZ_TOKEN }}
           BASE_URL: ${{ env.VERCEL_URL }}

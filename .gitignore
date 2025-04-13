@@ -35,4 +35,7 @@ next-env.d.ts
 # performance test results
 performance-tests/artifacts/
 performance-tests/.logs/
-*.jtl
+performance-tests/*.log
+
+
+# jmeter logs
