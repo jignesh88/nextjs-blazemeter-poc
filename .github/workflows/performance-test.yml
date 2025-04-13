@@ -73,13 +73,13 @@ jobs:
         run: |
           bzt performance-tests/config/login-test.yml -o settings.env.BASE_URL=$BASE_URL -report
 
-      - name: Save test artifacts
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: performance-reports
-          path: |
-            performance-tests/jmx/
-            performance-tests/artifacts/
-            .logs/
-            *.jtl
+      # - name: Save test artifacts
+      #   if: always()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: performance-reports
+      #     path: |
+      #       performance-tests/jmx/
+      #       performance-tests/artifacts/
+      #       .logs/
+      #       *.jtl
