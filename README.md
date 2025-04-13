@@ -17,11 +17,13 @@ A proof of concept for Next.js application with Blazemeter performance testing v
    cd nextjs-blazemeter-poc
     
 2. Install dependencies
-bashnpm install
-
+```bash
+npm install
+```
 3, Run the development server
-bashnpm run dev
-
+```bash
+npm run dev
+```
 4, Open http://localhost:3000 in your browser
 
 Performance Testing
