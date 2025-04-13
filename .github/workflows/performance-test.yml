@@ -41,7 +41,7 @@ jobs:
       # Set the Vercel URL from the deployment event or secrets
       - name: Set Vercel URL
         run: |
-          
+          env
           echo "Using Vercel URL: ${{ env.VERCEL_URL }}"
 
       # Run different test types based on workflow dispatch input
