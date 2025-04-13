@@ -1,0 +1,39 @@
+execution:
+
+concurrency: 10
+ramp-up: 30s
+hold-for: 2m
+scenario: checkout-flow
+
+scenarios:
+checkout-flow:
+requests:
+- url: ${BASE_URL}/products
+label: visit_products
+think-time: 2s
+  - url: ${BASE_URL}/product/1
+    label: view_product
+    think-time: 3s
+    
+  - url: ${BASE_URL}/checkout
+    label: visit_checkout
+    think-time: 4s
+    
+  - url: ${BASE_URL}/api/checkout
+    method: POST
+    label: submit_checkout
+    headers:
+      Content-Type: application/json
+    body: '{"name":"Test User","email":"test@example.com","address":"123 Test St","city":"Test City","zip":"12345","cardNumber":"4111111111111111","expDate":"12/25","cvv":"123"}'
+    think-time: 2s
+    
+  - url: ${BASE_URL}/order-confirmation
+    label: order_confirmation
+    think-time: 3s
+services:
+
+module: passfail
+criteria:
+
+avg-rt>2000ms for 10s, stop as failed
+fail>1% for 30s, stop as failed
