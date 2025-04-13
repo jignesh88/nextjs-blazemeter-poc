@@ -1,0 +1,29 @@
+execution:
+
+concurrency: 50
+ramp-up: 1m
+hold-for: 3m
+scenario: browse-products
+
+scenarios:
+browse-products:
+requests:
+- url: ${BASE_URL}/products
+label: product_listing_page
+think-time: 3s
+extract-regexp:
+product_id: "product/([0-9]+)"
+  - url: ${BASE_URL}/product/${product_id}
+    label: product_detail_page
+    think-time: 5s
+    
+  - url: ${BASE_URL}/product/${product_id+1}
+    label: another_product_page
+    think-time: 4s
+services:
+
+module: passfail
+criteria:
+
+avg-rt>1500ms for 15s, continue as failed
+p95>3s for 10s, stop as failed
