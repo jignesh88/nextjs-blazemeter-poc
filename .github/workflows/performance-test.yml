@@ -37,7 +37,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install bzt
-          pip install blazemeter-api-client
 
       # Set the Vercel URL from the deployment event or secrets
       - name: Set Vercel URL
