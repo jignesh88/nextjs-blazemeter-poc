@@ -6,7 +6,7 @@ on:
       - main
   deployment_status:
     environments:
-      - production
+      - Production
   workflow_dispatch:
     inputs:
       test_type:
